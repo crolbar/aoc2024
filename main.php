@@ -26,12 +26,16 @@ $day = $argv[1];
 $url = "https://adventofcode.com/2024/day/" . $day . "/input";
 $input = fetch($url);
 
-$day_word = ucfirst(
-    numfmt_format(
-        numfmt_create("en", NumberFormatter::SPELLOUT),
-        $day
-    )
+$day_word = numfmt_format(
+    numfmt_create("en", NumberFormatter::SPELLOUT),
+    $day
 );
 
+
+if (!isset($argv[2])) {
+    file_put_contents(sprintf("day_%s_input", $day_word), $input);
+    exit;
+}
+
 $part = $argv[2];
-require sprintf("day%sP%s.php", $day_word, $part);
+require sprintf("day%sP%s.php", ucfirst($day_word), $part);
