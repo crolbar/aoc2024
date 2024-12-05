@@ -23,8 +23,8 @@ foreach ($rules as $rule)
 
 function validate_rules($prev_numbers, $rules_map, $page_number): bool
 {
-    if (array_key_exists($page_number, $rules_map))
-        false;
+    if (!array_key_exists($page_number, $rules_map))
+        return false;
 
     foreach ($prev_numbers as $prev_number)
     {
